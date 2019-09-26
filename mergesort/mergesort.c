@@ -1,7 +1,20 @@
 #include "mergesort.h"
 
-void mergesort(int, int*) {
-  // This obviously doesn't actually do any *sorting*, so there's
-  // certainly work still to be done.
+void mergeRanges(int* values, int startIndex, int midPoint, int endIndex){
+  int rangeSize;
+  int* destination;
+  int firstIndex;
+  int secondIndex;
+  int copyIndex = 0;
   return;
 }
+
+void mergesortRange(int* values, int startIndex, int endIndex) {
+  int rangeSize;
+  return;
+}
+
+void mergesort(int size, int* values) {
+  return;
+}
+
