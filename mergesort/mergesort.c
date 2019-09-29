@@ -1,7 +1,6 @@
 #include "mergesort.h"
 
 void mergeRanges(int* values, int startIndex, int midPoint, int endIndex){
-
     int rangeSize = endIndex - startIndex;
     int* destination = (int)calloc(rangeSize, sizeof(int)); 
     int firstIndex = startIndex;
@@ -32,21 +31,21 @@ void mergeRanges(int* values, int startIndex, int midPoint, int endIndex){
       values[i + startIndex] = destination[i];
     }
   }
- }
+}
 
 boolean needsSorting(int rangeSize){
-return rangeSize >= 2;
+    return rangeSize >= 2;
 }
 
 void mergesortRange(int* values, int startIndex, int endIndex) {
-  int rangeSize;
-  return;
+    int rangeSize;
+    return;
 }
 
 void mergesort(int size, int* values) {
-  return;
+    return;
 }
 
 void main(int argc) {
-  printf("Main runs");
+    printf("Main runs");
 }
