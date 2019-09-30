@@ -32,6 +32,8 @@ void mergeRanges(int* values, int startIndex, int midPoint, int endIndex){
     for (int i = 0; i < rangeSize; i++) {
       values[i + startIndex] = destination[i];
     }
+
+    free(destination);
 }
 
 bool needsSorting(int rangeSize){

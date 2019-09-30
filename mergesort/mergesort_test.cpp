@@ -13,6 +13,7 @@ void arrays_match(int size, int a[], int b[]) {
 TEST(Mergesort, HandleEmptyList) {
   int a[] = { };
   int b[] = { };
+  
   mergesort(0, b);
   arrays_match(0, a, b);
 }
