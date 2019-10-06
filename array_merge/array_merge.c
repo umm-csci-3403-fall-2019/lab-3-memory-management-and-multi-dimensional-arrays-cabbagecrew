@@ -16,6 +16,13 @@
 //     just but moved into the front. 
 
 int* array_merge(int num_arrays, int* sizes, int** values) {
+
+  if(num_arrays == 0) {
+    int *sortedUniques = (int *) calloc(1, sizeof(int));
+    sortedUniques[0] = 0;
+    return sortedUniques; 
+  }
+
   int sumSizes = 0;
 
   for (int i = 0; i < num_arrays; i++) {
@@ -28,13 +35,10 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
 
   for (int j = 0; j < num_arrays; j++) {
     for (int k = 0; k < sizes[j]; k++) { 
-      printf("Values: %d \n", values[j][k]);
       joined_array[j_array_index] = values[j][k];
       j_array_index++;
     }
   }
-
-  printf("j_array_index %d \n", j_array_index);
 
   mergesort(j_array_index, joined_array);
 
@@ -61,28 +65,5 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
     }
   }
 
-  for (int v = 0; v < unique+1; v++) {
-      printf("Sorted unique: %d \n", sortedUniques[v]);
-  }
-  
-  
-  return joined_array;
-}
-
-int main(int argc, char *argv[]) {
-
-  int num_arrays = 3;
-  int sizes[] = { 2, 2, 3 };
-  int a0[] = { 3, 8 };
-  int a1[] = { 5, 8 };
-  int a2[] = { 8, 5, 1 };
-  int* a[] = { a0, a1, a2 };
-  int* arr_merge = array_merge(num_arrays, sizes, a);
-
-  // for (int l = 0; l < 4; l++) {
-  //   printf("%d", arr_merge[l]);
-  // }
-
-  free(arr_merge);
-  
+  return sortedUniques;
 }
