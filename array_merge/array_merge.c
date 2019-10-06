@@ -1,4 +1,3 @@
-// #include <cstdio>
 #include "../mergesort/mergesort.c"
 #include "../mergesort/mergesort.h"
 #include <stdio.h>
@@ -10,10 +9,9 @@
 //3: Use the most succinct unique counting approach that we found: gevni's counter 
 //     @ https://cboard.cprogramming.com/c-programming/155200-how-can-i-count-total-no-unique-elements-array.html#post1154407
 //     Our modification of this involves creating another array in the next step...
-//4: Create an array for the unique values. As #3 adds to the unique counter, it will also put in that unique value into 
-//     our new array. This will add them uniquely in order. 
-//5: Put the unique counter at the head of the array. Not sure if we need to reserve the spot for it upfront or if it could
-//     just but moved into the front. 
+//4: Create an array for the unique values. Like #3 put in that unique value into our new array. This will add them uniquely in order. 
+//     Put the unique counter at the head of the array. Not sure if we need to reserve the spot for it upfront or if it could
+//       just but moved into the front. 
 
 int* array_merge(int num_arrays, int* sizes, int** values) {
 
@@ -23,6 +21,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
     return sortedUniques; 
   }
 
+  //1: Combine all `values` into a single array, including duplicates
   int sumSizes = 0;
 
   for (int i = 0; i < num_arrays; i++) {
@@ -39,9 +38,13 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
       j_array_index++;
     }
   }
+  // END 1
 
+  //2: Sort the single array using `mergesort`
   mergesort(j_array_index, joined_array);
+  // END 2
 
+  //3: Use the most succinct unique counting approach that we found: gevni's counter (again, thanks to gevni)
   int unique = 1;
   for(int b = 0; b < j_array_index -1; b++) {
     if(joined_array[b]==joined_array[b+1]) {
@@ -50,7 +53,9 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
       unique++;
     }
   }
+  // END 3
 
+  //4: Create an array for the unique values. Like #3 put in that unique value into our new array. This will add them uniquely in order. 
   int *sortedUniques = (int *) calloc(unique+1, sizeof(int));
   sortedUniques[0] = unique;
 
@@ -64,6 +69,9 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
       sortedCounter++;
     }
   }
+  // END 4
+
+  free(joined_array);
 
   return sortedUniques;
 }
