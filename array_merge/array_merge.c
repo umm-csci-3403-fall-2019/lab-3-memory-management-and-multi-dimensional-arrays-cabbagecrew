@@ -16,15 +16,49 @@
 //     just but moved into the front. 
 
 int* array_merge(int num_arrays, int* sizes, int** values) {
-  // This is obviously broken. It has the right type, though, eh?
-  return sizes;
+  int sumSizes = 0;
+
+  for (int i = 0; i < num_arrays; i++) {
+    sumSizes += sizes[i]; 
+  }
+
+  int *joined_array = (int*) calloc(sumSizes , sizeof(int)); 
+   
+  int j_array_index = 0;
+
+  for (int j = 0; j < num_arrays; j++) {
+    for (int k = 0; k < sizes[j]; k++) { 
+      printf("%d ", values[j][k]);
+      // joined_array[j_array_index] = values[j][k];
+      j_array_index++;
+    }
+  }
+   
+
+  return joined_array;
 }
 
 int main(int argc, char *argv[]) {
   int a[2] = { 8, 5 };
   mergesort(2, a);
 
-  for(int loop = 0; loop < 2; loop++){
+  const int M = 2;
+
+  int testNumArray = 2;
+  int* testSizes[M] = {2, 2};  
+  int** testVal[M][M] = {
+    {8, 6}, 
+    {4, 20}
+  };
+
+  int* arr_merge = array_merge(testNumArray, testSizes, testVal);
+
+  for(int loop = 0; loop < 2; loop++) {
     printf("%d ", a[loop]);
   }
+
+  for (int L = 0; L < 6; L++) {
+    printf("%d", arr_merge[L]);
+  }
+  
 }
