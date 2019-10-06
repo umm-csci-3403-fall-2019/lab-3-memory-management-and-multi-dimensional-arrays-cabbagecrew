@@ -22,43 +22,53 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
     sumSizes += sizes[i]; 
   }
 
-  int *joined_array = (int*) calloc(sumSizes , sizeof(int)); 
+  int *joined_array = (int *) calloc(sumSizes, sizeof(int)); 
    
   int j_array_index = 0;
 
   for (int j = 0; j < num_arrays; j++) {
     for (int k = 0; k < sizes[j]; k++) { 
-      printf("%d ", values[j][k]);
-      // joined_array[j_array_index] = values[j][k];
+      printf("Values: %d \n", values[j][k]);
+      joined_array[j_array_index] = values[j][k];
       j_array_index++;
     }
   }
-   
 
+  mergesort(j_array_index, joined_array);
+
+  int unique = 1;
+  for(int b = 0; b < j_array_index -1; b++) {
+    if(joined_array[b]==joined_array[b+1]) {
+      continue;
+    } else {
+      unique++;
+    }
+  }
+
+  printf("Unqiue: %d \n", unique);
+
+  printf("Sorted: \n");
+  for (int v = 0; v < j_array_index; v++) {
+      printf("Values: %d \n", joined_array[v]);
+  }
+  
   return joined_array;
 }
 
 int main(int argc, char *argv[]) {
-  int a[2] = { 8, 5 };
-  mergesort(2, a);
 
-  const int M = 2;
+  int num_arrays = 3;
+  int sizes[] = { 2, 2, 3 };
+  int a0[] = { 3, 8 };
+  int a1[] = { 5, 8 };
+  int a2[] = { 8, 5, 1 };
+  int* a[] = { a0, a1, a2 };
+  int* arr_merge = array_merge(num_arrays, sizes, a);
 
-  int testNumArray = 2;
-  int* testSizes[M] = {2, 2};  
-  int** testVal[M][M] = {
-    {8, 6}, 
-    {4, 20}
-  };
+  // for (int l = 0; l < 4; l++) {
+  //   printf("%d", arr_merge[l]);
+  // }
 
-  int* arr_merge = array_merge(testNumArray, testSizes, testVal);
-
-  for(int loop = 0; loop < 2; loop++) {
-    printf("%d ", a[loop]);
-  }
-
-  for (int L = 0; L < 6; L++) {
-    printf("%d", arr_merge[L]);
-  }
+  free(arr_merge);
   
 }
