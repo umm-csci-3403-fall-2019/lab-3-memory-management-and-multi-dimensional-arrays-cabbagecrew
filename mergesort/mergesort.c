@@ -1,6 +1,6 @@
 #include "mergesort.h"
-#include <cstdlib>
-#include <cstdio>
+#include <stdlib.h>
+#include <stdio.h>
 
 void mergeRanges(int* values, int startIndex, int midPoint, int endIndex){
     int rangeSize = endIndex - startIndex;
