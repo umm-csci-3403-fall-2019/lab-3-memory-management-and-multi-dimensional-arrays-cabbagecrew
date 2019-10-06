@@ -22,7 +22,7 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
     sumSizes += sizes[i]; 
   }
 
-  int *joined_array = (int *) calloc(sumSizes, sizeof(int)); 
+  int *joined_array = (int *) calloc(sumSizes + 1, sizeof(int)); 
    
   int j_array_index = 0;
 
@@ -33,6 +33,8 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
       j_array_index++;
     }
   }
+
+  printf("j_array_index %d \n", j_array_index);
 
   mergesort(j_array_index, joined_array);
 
@@ -45,12 +47,24 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
     }
   }
 
-  printf("Unqiue: %d \n", unique);
+  int *sortedUniques = (int *) calloc(unique+1, sizeof(int));
+  sortedUniques[0] = unique;
 
-  printf("Sorted: \n");
-  for (int v = 0; v < j_array_index; v++) {
-      printf("Values: %d \n", joined_array[v]);
+  int sortedCounter = 1;
+
+  for(int unique_sorted_vals = 0; unique_sorted_vals < j_array_index; unique_sorted_vals++) {
+    if (joined_array[unique_sorted_vals]==joined_array[unique_sorted_vals+1]){
+      continue;
+    } else {
+      sortedUniques[sortedCounter] = joined_array[unique_sorted_vals];
+      sortedCounter++;
+    }
   }
+
+  for (int v = 0; v < unique+1; v++) {
+      printf("Sorted unique: %d \n", sortedUniques[v]);
+  }
+  
   
   return joined_array;
 }
